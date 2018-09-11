@@ -1,0 +1,12 @@
+{
+    "name": "Noyau.Lab.Editor",
+    "references": [
+        "Noyau.Lab"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
