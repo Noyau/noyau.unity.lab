@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Noyau.Lab
+namespace Noyau.Lab.PFS
 {
     public sealed class PathDebugger : MonoBehaviour
     {
