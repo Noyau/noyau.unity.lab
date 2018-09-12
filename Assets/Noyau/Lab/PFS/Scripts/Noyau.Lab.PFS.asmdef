@@ -1,3 +1,8 @@
-﻿{
-	"name": "Noyau.Lab"
+{
+    "name": "Noyau.Lab.PFS",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
 }
