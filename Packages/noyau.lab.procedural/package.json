@@ -1,0 +1,10 @@
+{
+    "name": "noyau.lab.procedural",
+    "displayName": "Procedural (Lab)",
+    "version": "0.0.1-preview",
+    "unity": "2018.2",
+    "description": "Noyau's Procedural Laboratory",
+    "dependencies": {
+        
+    }
+}

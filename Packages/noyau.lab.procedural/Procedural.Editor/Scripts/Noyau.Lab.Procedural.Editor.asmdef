@@ -1,0 +1,12 @@
+{
+    "name": "Noyau.Lab.Procedural.Editor",
+    "references": [
+        "Noyau.Lab.Procedural"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
