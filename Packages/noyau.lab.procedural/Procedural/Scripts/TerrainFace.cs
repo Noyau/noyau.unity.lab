@@ -9,14 +9,16 @@ namespace Noyau.Lab.Procedural
         private Vector3 m_localUp;
         private Vector3 m_localRight;
         private Vector3 m_localForward;
+        private ShapeGenerator m_shapeGenerator;
 
-        public TerrainFace(Mesh mesh, int resolution, Vector3 localUp)
+        public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp)
         {
             m_mesh = mesh;
             m_resolution = resolution;
             m_localUp = localUp;
             m_localRight = new Vector3(localUp.y, localUp.z, localUp.x);
             m_localForward = Vector3.Cross(localUp, m_localRight);
+            m_shapeGenerator = shapeGenerator;
         }
 
         public void GenerateMesh()
@@ -35,7 +37,8 @@ namespace Noyau.Lab.Procedural
                 float _x = 2F * _ix / _triangleResolution - 1F;
                 float _y = 2F * _iy / _triangleResolution - 1F;
 
-                _vertices[i] = Vector3.ClampMagnitude(m_localUp + _x * m_localRight + _y * m_localForward, .5F);
+                _vertices[i] = m_shapeGenerator.CalculatePoint(
+                    Vector3.ClampMagnitude(m_localUp + _x * m_localRight + _y * m_localForward, .5F));
 
                 if (_ix < _triangleResolution && _iy < _triangleResolution)
                 {

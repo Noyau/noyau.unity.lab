@@ -10,8 +10,14 @@ Implementing procedural tools.
 
 For now, I'm just following tutorials on from [here](https://www.youtube.com/watch?v=QN39W020LqU&list=PLFt_AvWsXl0cONs3T0By4puYy6GM22ko8). I'll see later what I can do with these tools...
 
+**Change-log**
+
+* implemented settings tools
+* implemented planet/sphere generation tools
+
 **Todo**
 
+* implement "Shape Generator" tools
 * add a "Create Procedural Planet" when "right-clicking" in scene hierarchy
 
 **Known Issues**
