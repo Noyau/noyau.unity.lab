@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Noyau.Lab.Paths
+namespace Noyau.Lab.PFS.Paths
 {
     [CreateAssetMenu(menuName = "Noyau/Lab/Ellipse")]
     public sealed class Ellipse : Path
@@ -63,7 +63,6 @@ namespace Noyau.Lab.Paths
         public override void DrawGizmos()
         {
             // Draw path
-            Vector3 _zero = Evaluate(0F);
             Gizmos.color = Color.white;
             for (int i = 1; i <= m_resolution; ++i)
             {

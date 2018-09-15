@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 
-namespace Noyau.Lab.Editor
+namespace Noyau.Lab.PFS.Editor
 {
     using Editor = UnityEditor.Editor;
 

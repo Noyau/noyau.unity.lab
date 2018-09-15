@@ -1,7 +1,7 @@
 {
-    "name": "Noyau.Lab.Editor",
+    "name": "Noyau.Lab.PFS.Editor",
     "references": [
-        "Noyau.Lab"
+        "Noyau.Lab.PFS"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [
