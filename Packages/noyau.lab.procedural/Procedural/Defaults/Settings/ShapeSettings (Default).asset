@@ -11,4 +11,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148daf30ebd00f348aee6b842771d89b, type: 3}
   m_Name: ShapeSettings (Default)
   m_EditorClassIdentifier: 
-  radius: 0.6
+  radius: 1.5
+  noiseLayers:
+  - enabled: 1
+    firstLayerAsMask: 0
+    settings:
+      strength: 0.4
+      roughness: 2
+      baseRoughness: 1
+      persistence: 0.5
+      minValue: 1.2
+      layerCount: 4
+      center: {x: 0, y: 0, z: 0}
+  - enabled: 1
+    firstLayerAsMask: 1
+    settings:
+      strength: 2.75
+      roughness: 2.52
+      baseRoughness: 1.38
+      persistence: 0.62
+      minValue: 1.2
+      layerCount: 4
+      center: {x: 0, y: 0, z: 0}

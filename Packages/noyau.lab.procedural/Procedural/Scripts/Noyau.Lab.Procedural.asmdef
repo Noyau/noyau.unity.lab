@@ -1,3 +1,10 @@
-﻿{
-	"name": "Noyau.Lab.Procedural"
+{
+    "name": "Noyau.Lab.Procedural",
+    "references": [
+        "Noyau.Lab.Procedural.Dependencies"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
 }

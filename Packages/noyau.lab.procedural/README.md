@@ -12,12 +12,12 @@ For now, I'm just following tutorials on from [here](https://www.youtube.com/wat
 
 **Change-log**
 
+* implemented noise filter tools and shape generator
 * implemented settings tools
 * implemented planet/sphere generation tools
 
 **Todo**
 
-* implement "Shape Generator" tools
 * add a "Create Procedural Planet" when "right-clicking" in scene hierarchy
 
 **Known Issues**

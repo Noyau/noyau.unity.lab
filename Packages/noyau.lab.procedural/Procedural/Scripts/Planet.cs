@@ -49,8 +49,8 @@ namespace Noyau.Lab.Procedural
             if (m_terrainFaces == null || m_terrainFaces.Length != FaceCount)
                 m_terrainFaces = new TerrainFace[FaceCount];
 
-            if (m_shapeGenerator == null)
-                m_shapeGenerator = new ShapeGenerator(m_shapeSettings);
+            //if (m_shapeGenerator == null) // array index out of bounds when resizing "layers" etc.
+            m_shapeGenerator = new ShapeGenerator(m_shapeSettings);
 
             for (int i = 0; i < FaceCount; ++i)
             {
