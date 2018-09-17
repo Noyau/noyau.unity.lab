@@ -7,10 +7,15 @@ namespace Noyau.Lab.Procedural
         private ShapeSettings m_settings;
         private NoiseFilter[] m_noiseFilters;
 
-        public ShapeGenerator(ShapeSettings settings)
+        public Threshold elevation { get; } = new Threshold();
+
+        public void UpdateSettings(ShapeSettings settings)
         {
             m_settings = settings;
-            m_noiseFilters = new NoiseFilter[settings.noiseLayers.Length];
+
+            if (m_noiseFilters == null || m_noiseFilters.Length != settings.noiseLayers.Length)
+                m_noiseFilters = new NoiseFilter[settings.noiseLayers.Length];
+
             for (int i = 0; i < m_noiseFilters.Length; ++i)
                 m_noiseFilters[i] = NoiseFilterFactory.CreateNoiseFilter(settings.noiseLayers[i].settings);
         }
@@ -20,13 +25,14 @@ namespace Noyau.Lab.Procedural
             // WARNING: our "unit sphere" is .5 radius (1 diameter)!
             pointOnUnitSphere *= 2F;
 
-            float _radius = m_settings != null
-                ? m_settings.radius
-                : 1F;
+            if (m_settings == null)
+                return pointOnUnitSphere;
+
+            float _radius = m_settings.radius;
 
             float _height = 0F;
 
-            if (m_noiseFilters.Length > 0)
+            if (m_noiseFilters != null && m_noiseFilters.Length > 0)
             {
                 float _mask;
                 float _baseHeight = m_noiseFilters[0].Evaluate(pointOnUnitSphere);
@@ -47,7 +53,11 @@ namespace Noyau.Lab.Procedural
                 }
             }
 
-            return (_radius + _height) * pointOnUnitSphere;
+            _height += _radius;
+
+            elevation.AddValue(_height);
+
+            return _height * pointOnUnitSphere;
         }
     } // class: ShapeGenerator
 } // namespace

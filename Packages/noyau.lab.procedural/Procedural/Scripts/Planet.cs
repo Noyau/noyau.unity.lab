@@ -23,12 +23,11 @@ namespace Noyau.Lab.Procedural
         [SerializeField] private ShapeSettings m_shapeSettings = null;
         [SerializeField] private ColorSettings m_colorSettings = null;
 
-        private ShapeGenerator m_shapeGenerator = null;
+        private ShapeGenerator m_shapeGenerator = new ShapeGenerator();
+        private ColorGenerator m_colorGenerator = new ColorGenerator();
 
         [SerializeField, Range(2, 256)] private int m_resolution = 8;
         [SerializeField] private bool m_autoUpdate = true;
-
-        [SerializeField] private Material m_material = null;
 
         [SerializeField, HideInInspector] private MeshFilter[] m_meshFilters = { };
         [SerializeField, HideInInspector] private MeshRenderer[] m_meshRenderers = { };
@@ -56,8 +55,8 @@ namespace Noyau.Lab.Procedural
             if (m_terrainFaces == null || m_terrainFaces.Length != FaceCount)
                 m_terrainFaces = new TerrainFace[FaceCount];
 
-            //if (m_shapeGenerator == null) // array index out of bounds when resizing "layers" etc.
-            m_shapeGenerator = new ShapeGenerator(m_shapeSettings);
+            m_shapeGenerator.UpdateSettings(m_shapeSettings);
+            m_colorGenerator.UpdateSettings(m_colorSettings);
 
             FaceRenderMask _faceRenderMask;
 
@@ -75,7 +74,7 @@ namespace Noyau.Lab.Procedural
                 if (m_meshRenderers[i] == null)
                     m_meshRenderers[i] = m_meshFilters[i].gameObject.AddComponent<MeshRenderer>();
 
-                m_meshRenderers[i].sharedMaterial = m_material;
+                m_meshRenderers[i].sharedMaterial = m_colorSettings.material;
 
                 _faceRenderMask = (FaceRenderMask)(1 << i);
 
@@ -118,14 +117,18 @@ namespace Noyau.Lab.Procedural
                 if (m_terrainFaces[i].enabled) // Note: yeah I know, there is a double check, I'm kinda paranoid ( @ _ @')
                     m_terrainFaces[i].GenerateMesh();
             }
+
+            m_colorGenerator.UpdateElevation(m_shapeGenerator.elevation);
         }
         public void GenerateColors()
         {
-            if (m_colorSettings == null)
-                return;
+            //if (m_colorSettings == null)
+            //    return;
 
-            for (int i = 0; i < m_meshRenderers.Length; ++i)
-                m_meshRenderers[i].sharedMaterial.color = m_colorSettings.color;
+            //for (int i = 0; i < m_meshRenderers.Length; ++i)
+            //    m_meshRenderers[i].sharedMaterial.color = m_colorSettings.color;
+
+            m_colorGenerator.UpdateColors();
         }
     } // class: Planet
 } // namespace
