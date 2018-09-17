@@ -6,6 +6,12 @@ namespace Noyau.Lab.Procedural
     public sealed class Planet : MonoBehaviour
     {
         public const int FaceCount = 6;
+        public static readonly string[] FacesNames =
+        {
+            "Top", "Bottom",
+            "Right", "Left",
+            "Front", "Back",
+        };
         public static readonly Vector3[] FacesUps =
         {
             Vector3.up, Vector3.down,
@@ -13,6 +19,7 @@ namespace Noyau.Lab.Procedural
             Vector3.forward, Vector3.back,
         };
 
+        [SerializeField] private FaceRenderMask m_faceRenderMask = FaceRenderMask.All;
         [SerializeField] private ShapeSettings m_shapeSettings = null;
         [SerializeField] private ColorSettings m_colorSettings = null;
 
@@ -52,11 +59,13 @@ namespace Noyau.Lab.Procedural
             //if (m_shapeGenerator == null) // array index out of bounds when resizing "layers" etc.
             m_shapeGenerator = new ShapeGenerator(m_shapeSettings);
 
+            FaceRenderMask _faceRenderMask;
+
             for (int i = 0; i < FaceCount; ++i)
             {
                 if (m_meshFilters[i] == null)
                 {
-                    GameObject _go = new GameObject($"Face {i + 1}");
+                    GameObject _go = new GameObject($"{FacesNames[i]} Face");
                     _go.transform.SetParent(transform, false);
                     m_meshFilters[i] = _go.AddComponent<MeshFilter>();
                     m_meshFilters[i].sharedMesh = new Mesh();
@@ -68,8 +77,13 @@ namespace Noyau.Lab.Procedural
 
                 m_meshRenderers[i].sharedMaterial = m_material;
 
+                _faceRenderMask = (FaceRenderMask)(1 << i);
+
                 m_terrainFaces[i] = new TerrainFace(m_shapeGenerator,
-                    m_meshFilters[i].sharedMesh, m_resolution, FacesUps[i]);
+                    m_meshFilters[i].sharedMesh, m_resolution, FacesUps[i],
+                    (_faceRenderMask & m_faceRenderMask) == _faceRenderMask);
+
+                m_meshFilters[i].gameObject.SetActive(m_terrainFaces[i].enabled);
             }
         }
 
@@ -100,7 +114,10 @@ namespace Noyau.Lab.Procedural
         public void GenerateShapes()
         {
             for (int i = 0; i < m_terrainFaces.Length; ++i)
-                m_terrainFaces[i].GenerateMesh();
+            {
+                if (m_terrainFaces[i].enabled) // Note: yeah I know, there is a double check, I'm kinda paranoid ( @ _ @')
+                    m_terrainFaces[i].GenerateMesh();
+            }
         }
         public void GenerateColors()
         {

@@ -10,8 +10,15 @@ namespace Noyau.Lab.Procedural
         private Vector3 m_localRight;
         private Vector3 m_localForward;
         private ShapeGenerator m_shapeGenerator;
+        private bool m_enabled;
 
-        public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp)
+        public bool enabled
+        {
+            get { return m_enabled; }
+            set { m_enabled = value; }
+        }
+
+        public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp, bool enabled)
         {
             m_mesh = mesh;
             m_resolution = resolution;
@@ -19,10 +26,13 @@ namespace Noyau.Lab.Procedural
             m_localRight = new Vector3(localUp.y, localUp.z, localUp.x);
             m_localForward = Vector3.Cross(localUp, m_localRight);
             m_shapeGenerator = shapeGenerator;
+            m_enabled = enabled;
         }
 
         public void GenerateMesh()
         {
+            if (!enabled) return;
+
             Vector3[] _vertices = new Vector3[m_resolution * m_resolution];
 
             int _triangleIndex = 0;
