@@ -5,11 +5,14 @@ namespace Noyau.Lab.Procedural
     [System.Serializable]
     public sealed class NoiseSettings : ISerializationCallbackReceiver
     {
+        public NoiseMethod noiseMethod = NoiseMethod.Simple;
         public float strength = .4F;
         public float roughness = 2F;
         public float baseRoughness = 1F;
         public float persistence = .5F;
         public float minValue = .5F;
+        public float weightMultiplier = .8F; // only works for "RigidNoiseFilters"
+                                             // TODO make common attributes to "hide" field using conditionals
         [Range(1, 8)] public int layerCount = 1;
         public Vector3 center = Vector3.zero;
 
@@ -20,6 +23,7 @@ namespace Noyau.Lab.Procedural
             roughness = Mathf.Max(roughness, 0F);
             baseRoughness = Mathf.Max(baseRoughness, 0F);
             minValue = Mathf.Max(minValue, 0F);
+            weightMultiplier = Mathf.Max(weightMultiplier, 0F);
             persistence = Mathf.Max(persistence, 0F);
         }
         public void OnBeforeSerialize() { }

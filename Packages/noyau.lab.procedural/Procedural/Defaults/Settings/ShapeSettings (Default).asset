@@ -16,20 +16,36 @@ MonoBehaviour:
   - enabled: 1
     firstLayerAsMask: 0
     settings:
+      noiseMethod: 0
       strength: 0.4
       roughness: 2
       baseRoughness: 1
       persistence: 0.5
       minValue: 1.2
+      weightMultiplier: 0.8
       layerCount: 4
       center: {x: 0, y: 0, z: 0}
   - enabled: 1
     firstLayerAsMask: 1
     settings:
+      noiseMethod: 0
       strength: 2.75
       roughness: 2.52
       baseRoughness: 1.38
       persistence: 0.62
       minValue: 1.2
+      weightMultiplier: 0.8
       layerCount: 4
+      center: {x: 0, y: 0, z: 0}
+  - enabled: 1
+    firstLayerAsMask: 0
+    settings:
+      noiseMethod: 1
+      strength: 0.48
+      roughness: 2.68
+      baseRoughness: 0.5
+      persistence: 0.42
+      minValue: 1.03
+      weightMultiplier: 3.21
+      layerCount: 3
       center: {x: 0, y: 0, z: 0}

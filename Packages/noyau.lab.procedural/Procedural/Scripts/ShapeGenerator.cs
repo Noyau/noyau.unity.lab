@@ -12,7 +12,7 @@ namespace Noyau.Lab.Procedural
             m_settings = settings;
             m_noiseFilters = new NoiseFilter[settings.noiseLayers.Length];
             for (int i = 0; i < m_noiseFilters.Length; ++i)
-                m_noiseFilters[i] = new NoiseFilter(settings.noiseLayers[i].settings);
+                m_noiseFilters[i] = NoiseFilterFactory.CreateNoiseFilter(settings.noiseLayers[i].settings);
         }
 
         public Vector3 CalculatePoint(Vector3 pointOnUnitSphere)
