@@ -2,16 +2,15 @@
 
 namespace Noyau.Lab.Procedural
 {
-    public sealed class ShapeGenerator
+    public sealed class ShapeGenerator : Generator<ShapeSettings>
     {
-        private ShapeSettings m_settings;
         private NoiseFilter[] m_noiseFilters;
 
         public Threshold elevation { get; } = new Threshold();
 
-        public void UpdateSettings(ShapeSettings settings)
+        public override void UpdateSettings(ShapeSettings settings)
         {
-            m_settings = settings;
+            base.UpdateSettings(settings);
 
             if (m_noiseFilters == null || m_noiseFilters.Length != settings.noiseLayers.Length)
                 m_noiseFilters = new NoiseFilter[settings.noiseLayers.Length];

@@ -2,21 +2,19 @@
 
 namespace Noyau.Lab.Procedural
 {
-    public sealed class ColorGenerator
+    public sealed class ColorGenerator : Generator<ColorSettings>
     {
         public const int TextureResolution = 64; // expected texture size: 64x2
         public const int ColorBufferSize = TextureResolution << 1;
-
-        private ColorSettings m_settings;
 
         private Texture2D m_gradientTexture; // TODO release texture sometimes (?)
         private Color[] m_gradientColors;
 
         // TODO implement custom "preview" for texture
 
-        public void UpdateSettings(ColorSettings settings)
+        public override void UpdateSettings(ColorSettings settings)
         {
-            m_settings = settings;
+            base.UpdateSettings(settings);
 
             if (m_gradientTexture == null)
                 m_gradientTexture = new Texture2D(TextureResolution, 2);

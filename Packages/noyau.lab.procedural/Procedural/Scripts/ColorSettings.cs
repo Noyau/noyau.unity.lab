@@ -3,7 +3,7 @@
 namespace Noyau.Lab.Procedural
 {
     [CreateAssetMenu(menuName = "Noyau Lab/Procedural/Color Settings")]
-    public sealed class ColorSettings : ScriptableObject
+    public sealed class ColorSettings : ScriptableObject, ISettings
     {
         public static readonly int _Gradient = Shader.PropertyToID("_Gradient");
         public static readonly int _Elevation = Shader.PropertyToID("_Elevation");

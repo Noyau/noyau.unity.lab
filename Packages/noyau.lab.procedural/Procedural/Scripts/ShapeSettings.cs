@@ -3,7 +3,7 @@
 namespace Noyau.Lab.Procedural
 {
     [CreateAssetMenu(menuName = "Noyau Lab/Procedural/Shape Settings")]
-    public sealed class ShapeSettings : ScriptableObject
+    public sealed class ShapeSettings : ScriptableObject, ISettings
     {
         [System.Serializable]
         public sealed class NoiseLayer
