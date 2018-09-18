@@ -12,6 +12,9 @@ namespace Noyau.Lab.Procedural
         [ColorUsage(false, true)] public Color color = Color.white;
         public Gradient gradient = new Gradient();
         public Material material = null;
+        // TODO
+        public TextureParam gradientParam = new TextureParam("_Gradient");
+        public VectorParam elevationParam = new VectorParam("_Elevation");
 
         private void Reset()
         {
