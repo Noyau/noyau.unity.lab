@@ -110,7 +110,10 @@ namespace Noyau.Lab.Procedural
         private void OnValidateGradient()
         {
             if (m_texture == null)
+            {
                 m_texture = new Texture2D(TextureResolution, 2);
+                m_texture.name = $"{propertyName} ({typeof(GradientParam).Name})";
+            }
 
             if (m_colors == null || m_colors.Length != ColorBufferSize)
                 m_colors = new Color[ColorBufferSize];
