@@ -96,8 +96,6 @@ namespace Noyau.Lab.Procedural
         [SerializeField, HideInInspector] private Texture2D m_texture = null; // TODO release texture sometimes (?)
         [SerializeField, HideInInspector] private Color[] m_colors = null;
 
-        // TODO implement custom "preview" for texture
-
         public GradientParam(string propertyName, Gradient defaultValue) : base(propertyName, defaultValue)
         { }
         public GradientParam(string propertyName) : this(propertyName, new Gradient())
