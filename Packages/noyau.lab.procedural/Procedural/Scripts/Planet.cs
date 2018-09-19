@@ -41,7 +41,7 @@ namespace Noyau.Lab.Procedural
 
         private void OnValidate()
         {
-            Generate();
+
         }
 
         public void Initialize()

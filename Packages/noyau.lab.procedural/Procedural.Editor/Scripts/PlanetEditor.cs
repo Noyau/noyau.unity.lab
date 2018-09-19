@@ -21,6 +21,7 @@ namespace Noyau.Lab.Procedural.Editor
 
         private SerializedProperty m_shapeSettings = null;
         private SerializedProperty m_colorSettings = null;
+        private SerializedProperty m_autoUpdate = null;
 
         private void OnEnable()
         {
@@ -29,13 +30,21 @@ namespace Noyau.Lab.Procedural.Editor
 
             m_colorSettings = serializedObject.FindProperty("m_colorSettings");
             m_colorSettings.isExpanded = m_colorSettings.objectReferenceValue != null;
+
+            m_autoUpdate = serializedObject.FindProperty("m_autoUpdate");
         }
 
         public override void OnInspectorGUI()
         {
-            DrawDefaultInspector();
-
             Planet _planet = target as Planet;
+
+            using (ChangeCheckScope check = new ChangeCheckScope())
+            {
+                DrawDefaultInspector();
+
+                if (check.changed && m_autoUpdate.boolValue)
+                    _planet.Generate();
+            }
 
             if (GUILayout.Button("Generate"))
                 _planet.Generate();
