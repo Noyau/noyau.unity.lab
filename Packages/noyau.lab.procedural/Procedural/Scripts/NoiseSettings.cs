@@ -3,29 +3,17 @@
 namespace Noyau.Lab.Procedural
 {
     [System.Serializable]
-    public sealed class NoiseSettings : ISerializationCallbackReceiver
+    public sealed class NoiseSettings
     {
         public NoiseMethod noiseMethod = NoiseMethod.Simple;
-        public float strength = .4F;
-        public float roughness = 2F;
-        public float baseRoughness = 1F;
-        public float persistence = .5F;
-        public float minValue = .5F;
-        public float weightMultiplier = .8F; // only works for "RigidNoiseFilters"
-                                             // TODO make common attributes to "hide" field using conditionals
-        [Range(1, 8)] public int layerCount = 1;
+        [GreaterThan(0F)] public float strength = .4F;
+        [GreaterThan(0F)] public float roughness = 2F;
+        [GreaterThan(0F)] public float baseRoughness = 1F;
+        [GreaterThan(0F)] public float persistence = .5F;
+        [GreaterThan(0F)] public float minValue = .5F;
+        [GreaterThan(0F)] public float weightMultiplier = .8F; // only works for "RigidNoiseFilters"
+                                                               // TODO make common attributes to "hide" field using conditionals
+        [Range(1, 8)] public int layerCount = 1; // NOTE: I could use my *marvelous* IntervalAttribute but meh... It's shorter this way
         public Vector3 center = Vector3.zero;
-
-        public void OnAfterDeserialize()
-        {
-            // TODO make common attributes for "Min/Max" values etc.
-            strength = Mathf.Max(strength, 0F);
-            roughness = Mathf.Max(roughness, 0F);
-            baseRoughness = Mathf.Max(baseRoughness, 0F);
-            minValue = Mathf.Max(minValue, 0F);
-            weightMultiplier = Mathf.Max(weightMultiplier, 0F);
-            persistence = Mathf.Max(persistence, 0F);
-        }
-        public void OnBeforeSerialize() { }
     } // class: NoiseSettings
 } // namespace
