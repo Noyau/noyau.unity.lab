@@ -7,6 +7,12 @@ namespace Noyau.Lab.Procedural
         public float min { get; private set; } = float.MaxValue;
         public float max { get; private set; } = float.MinValue;
 
+        public void Reset()
+        {
+            min = float.MaxValue;
+            max = float.MinValue;
+        }
+
         public void AddValue(float value)
         {
             if (value < min) min = value;

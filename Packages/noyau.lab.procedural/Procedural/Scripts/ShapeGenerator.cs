@@ -17,6 +17,8 @@ namespace Noyau.Lab.Procedural
 
             for (int i = 0; i < m_noiseFilters.Length; ++i)
                 m_noiseFilters[i] = NoiseFilterFactory.CreateNoiseFilter(settings.noiseLayers[i].settings);
+
+            elevation.Reset();
         }
 
         public Vector3 CalculatePoint(Vector3 pointOnUnitSphere)
