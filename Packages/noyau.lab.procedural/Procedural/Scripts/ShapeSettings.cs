@@ -13,12 +13,7 @@ namespace Noyau.Lab.Procedural
             public NoiseSettings settings = new NoiseSettings();
         } // class: NoiseLayer
 
-        public float radius = .5F;
+        [GreaterThan(0F)] public float radius = .5F;
         public NoiseLayer[] noiseLayers = { };
-
-        private void OnValidate()
-        {
-            radius = Mathf.Max(radius, 0F);
-        }
     } // class: ShapeSettings
 } // namespace
