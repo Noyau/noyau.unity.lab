@@ -20,5 +20,7 @@ namespace Noyau.Lab.Procedural
 
         public static implicit operator Vector2(Threshold threshold) => new Vector2(threshold.min, threshold.max);
         public static implicit operator Vector4(Threshold threshold) => new Vector4(threshold.min, threshold.max);
+        public static implicit operator Threshold(Vector2 vector) => new Threshold { min = vector.x, max = vector.y };
+        public static implicit operator Threshold(Vector4 vector) => new Threshold { min = vector.x, max = vector.y };
     } // class: Threshold
 } // namespace
