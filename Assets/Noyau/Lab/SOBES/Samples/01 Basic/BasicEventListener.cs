@@ -3,7 +3,7 @@
 namespace Noyau.Lab.SOBES.Samples._01_Basic
 {
     [DisallowMultipleComponent, SelectionBase]
-    public sealed class BasicListener : GameEventListener<BasicEvent>
+    public sealed class BasicEventListener : GameEventListener<BasicEvent>
     {
         public override void OnGameEvent(BasicEvent sender)
         {
