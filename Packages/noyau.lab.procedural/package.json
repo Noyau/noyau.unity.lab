@@ -5,7 +5,6 @@
     "unity": "2018.2",
     "description": "Noyau's Procedural Laboratory",
     "dependencies": {
-        "com.unity.render-pipelines.lightweight": "3.0.0-preview",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.physics": "1.0.0",
         "com.unity.modules.ui": "1.0.0",
